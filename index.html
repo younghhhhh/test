@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <title>TEST</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      @media(max-width:800px){
+        body{
+          display:none;
+        }
+      }
+      body{
+        background-color: #E1F6FA;
+        margin: 10;
+        font-family: arial, helvetica, sans-serif;
+      }
+      h4{
+        text-align: right;
+      }
+      #Q_top{
+        position: relative; right: 100px;
+      }
+      #Q_nq{
+        background-color:#46649B;
+        color: white;
+        padding:40px;
+        font-size: 20px;
+      }
+      #Q_num{
+        background-color:#3CA0FF;
+        color: white;
+        display: inline;
+        padding:5px;
+        font-size: 30px;
+      }
+      #Q_ques{
+        padding:12px;
+      }
+      #A_OX{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        position: relative; top: 80px;
+      }
+      #O{
+        background-color:#7DA5E1;
+        color: white;
+        font-size:200px;
+        text-align:center;
+      }
+      #X{
+        background-color:white;
+        color: #7DA5E1;
+        font-size:200px;
+        text-align:center;
+      }
+      .myButton {
+      	-moz-box-shadow:inset 0px 1px 0px 0px #efdcfb;
+      	-webkit-box-shadow:inset 0px 1px 0px 0px #efdcfb;
+      	box-shadow:inset 0px 1px 0px 0px #efdcfb;
+      	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfbdfa), color-stop(1, #bc80ea));
+      	background:-moz-linear-gradient(top, #dfbdfa 5%, #bc80ea 100%);
+      	background:-webkit-linear-gradient(top, #dfbdfa 5%, #bc80ea 100%);
+      	background:-o-linear-gradient(top, #dfbdfa 5%, #bc80ea 100%);
+      	background:-ms-linear-gradient(top, #dfbdfa 5%, #bc80ea 100%);
+      	background:linear-gradient(to bottom, #dfbdfa 5%, #bc80ea 100%);
+      	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfbdfa', endColorstr='#bc80ea',GradientType=0);
+      	background-color:#dfbdfa;
+      	-moz-border-radius:10px;
+      	-webkit-border-radius:10px;
+      	border-radius:10px;
+      	border:1px solid #c584f3;
+      	display:inline-block;
+      	cursor:pointer;
+      	color:#ffffff;
+      	font-family:Arial;
+      	font-size:20px;
+      	font-weight:bold;
+      	padding:5px 25px;
+      	text-decoration:none;
+      	text-shadow:0px 1px 0px #9752cc;
+      }
+      .myButton:hover {
+      	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bc80ea), color-stop(1, #dfbdfa));
+      	background:-moz-linear-gradient(top, #bc80ea 5%, #dfbdfa 100%);
+      	background:-webkit-linear-gradient(top, #bc80ea 5%, #dfbdfa 100%);
+      	background:-o-linear-gradient(top, #bc80ea 5%, #dfbdfa 100%);
+      	background:-ms-linear-gradient(top, #bc80ea 5%, #dfbdfa 100%);
+      	background:linear-gradient(to bottom, #bc80ea 5%, #dfbdfa 100%);
+      	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bc80ea', endColorstr='#dfbdfa',GradientType=0);
+      	background-color:#bc80ea;
+      }
+      .myButton:active {
+	      position:relative;
+	      top:1px;
+      }
+      #A_meResult{
+        font-size: 20px;
+        position: relative;
+        top: 90px;
+        display: none;
+      }
+      #A_result{
+        font-size: 20px;
+        font-weight: bold;
+      }
+      #A_ex{
+        font-size: 20px;
+        position: relative;
+        top: 80px;
+        display: none;
+      }
+      #A_correct{
+        font-size: 20px;
+        font-weight: bold;
+      }
+      #A_me{
+        color: #9932CC;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .A_point{
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="Q_top"><h4>다음에 제시된 문장이 옳으면 O, 틀리면 X를 선택하시오.</h4></div>
+    <div id="Q_nq">
+      <span id="Q_num">Q3</span>
+      <span id="Q_ques">관상동맥용 스텐트 허가시, 인체에 삽입되는 스텐트에 대해서만 생물학적 안전에 관한 평가가 필요하다.</span>
+    </div>
+    <div id="A_OX">
+      <label id="O">
+        O<input id="A_O" type="radio" name="button" value="O"  onclick="
+        document.querySelector('#A_OX').value = 'O'">
+      </label>
+      <label id="X">
+        X<input id="A_X" type="radio" name="button" value="X" onclick="
+        document.querySelector('#A_OX').value = 'X'">
+      </label>
+    </div>
+    <div style="position: relative; top: 100px;">
+      <a href="#" class="myButton" onclick="
+        if(document.querySelector('#A_OX').value == document.querySelector('#A_correct').value && document.querySelector('input[type = radio]:checked').value){
+          document.querySelector('#A_me').value = document.querySelector('#A_OX').value;
+          document.querySelector('#A_result').value='맞췄습니다';
+          document.querySelector('#A_result').style.color='blue';
+          document.querySelector('#A_meResult').style.display='block';
+          document.querySelector('#A_ex').style.display='block';
+          document.querySelector('#A_O').disabled=true;
+
+      } else if(document.querySelector('#A_OX').value != document.querySelector('#A_correct').value && document.querySelector('input[type = radio]:checked').value){
+          document.querySelector('#A_me').value = document.querySelector('#A_OX').value;
+          document.querySelector('#A_result').value='틀렸습니다';
+          document.querySelector('#A_result').style.color='red';
+          document.querySelector('#A_meResult').style.display='block';
+          document.querySelector('#A_ex').style.display='block';
+          document.querySelector('#A_X').disabled=true;
+      }">결과 확인</a>
+    </div>
+    <div id="A_meResult">
+      <p><span class="A_point">결과:</span> <input id="A_result" type="button"></p>
+    </div>
+    <div id="A_ex">
+      <p><span class="A_point">정답:</span> <input id="A_correct" type="button" value="X"> <span class="A_point">입력한 값:</span> <input id="A_me" type="button"></p>
+      <p><span class="A_point">해설:</span> 스텐트 뿐만 아니라 전달시스템에 대해서도 생물학적 안전에 관한 평가가 필요하다.</p>
+    </div>
+  </body>
+</html>
